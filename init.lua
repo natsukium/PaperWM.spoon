@@ -129,6 +129,9 @@ PaperWM.window_gap = {
     right = 8,
 }
 
+-- number of pixels offset to place windows
+PaperWM.window_offset = { left = 0, top = 0, right = 0, bottom = 0 }
+
 -- ratios to use when cycling widths and heights, golden ratio by default
 PaperWM.window_ratios = { 0.23607, 0.38195, 0.61804 }
 
@@ -238,10 +241,10 @@ local function getCanvas(screen)
     local bottom_gap = getGap("bottom")
 
     return Rect(
-        screen_frame.x + left_gap,
-        screen_frame.y + top_gap,
-        screen_frame.w - (left_gap + right_gap),
-        screen_frame.h - (top_gap + bottom_gap)
+        screen_frame.x + left_gap + PaperWM.window_offset.left,
+        screen_frame.y + top_gap + PaperWM.window_offset.top,
+        screen_frame.w - (left_gap + right_gap) - (PaperWM.window_offset.left + PaperWM.window_offset.right),
+        screen_frame.h - (top_gap + bottom_gap) - (PaperWM.window_offset.top + PaperWM.window_offset.bottom)
     )
 end
 

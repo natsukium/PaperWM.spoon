@@ -60,8 +60,8 @@ Config.window_filter = WindowFilter.new():setOverrideFilter({
     hasTitlebar = true,
     allowRoles = "AXStandardWindow",
 })
----external bar: make space for external menu bar
-Config.external_bar = nil ---@type {top: number?, bottom: number?}?
+---external bar: make space for external menu bar or dock
+Config.external_bar = nil ---@type {top: number?, bottom: number?, left: number?, right: number?}?
 
 ---window gaps: can be set as a single number or a table with top, bottom, left, right values
 Config.window_gap = 8 ---@type number|{ top: number, bottom: number, left: number, right: number }

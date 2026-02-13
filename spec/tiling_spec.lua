@@ -66,6 +66,20 @@ describe("PaperWM.tiling", function()
             assert.are.equal(100, frame2.w)
             assert.are.equal(692, frame2.y2) -- tileColumn sets y2
         end)
+        it("should tile a single window with external_bar left", function()
+            mock_paperwm.external_bar = { top = 40, left = 50 }
+            local win = mock_window(101, "Test Window", { x = 0, y = 0, w = 100, h = 100 })
+            Windows.addWindow(win)
+            focused_window = win
+
+            Tiling.tileSpace(1)
+
+            local frame = win:frame()
+            assert.are.equal(58, frame.x)
+            assert.are.equal(48, frame.y)
+            assert.are.equal(100, frame.w)
+            assert.are.equal(644, frame.h)
+        end)
         it("should tile a single window to fit in the screen", function()
             mock_paperwm.external_bar = nil
             local win = mock_window(101, "Test Window", { x = 0, y = 0, w = 100, h = 100 })

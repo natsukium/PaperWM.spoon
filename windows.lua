@@ -89,14 +89,19 @@ function Windows.getCanvas(screen)
     local external_bar = Windows.PaperWM.external_bar
     local external_bar_top = external_bar and external_bar.top
     local external_bar_bottom = external_bar and external_bar.bottom
+    local external_bar_left = external_bar and external_bar.left
+    local external_bar_right = external_bar and external_bar.right
     local frame_top = external_bar_top and screen_full_frame.y + external_bar_top or screen_frame.y
     local frame_bottom = external_bar_bottom and screen_full_frame.y2 - external_bar_bottom or screen_frame.y2
+    local frame_left = external_bar_left and screen_full_frame.x + external_bar_left or screen_frame.x
+    local frame_right = external_bar_right and screen_full_frame.x2 - external_bar_right or screen_frame.x2
     local frame_height = frame_bottom - frame_top
+    local frame_width = frame_right - frame_left
 
     return Rect(
-        screen_frame.x + left_gap,
+        frame_left + left_gap,
         frame_top + top_gap,
-        screen_frame.w - (left_gap + right_gap),
+        frame_width - (left_gap + right_gap),
         frame_height - (top_gap + bottom_gap)
     )
 end
